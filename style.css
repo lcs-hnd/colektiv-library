@@ -1,33 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Orbitron:wght@400..900&family=Share+Tech+Mono&family=Stick+No+Bills:wght@200..800&display=swap');
 
-
 :root {
     --font-color-and-bg: #000000;
     --font-color-and-bg2: #F3A712;
 }
 
-/* * {
-    box-sizing: border-box;
-} */
-
 html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 body {
     background-color: #000000;
+}
+
+.screen {
+    pointer-events: none;
     opacity: 0;
-    transition: opacity 2s ease-in; 
+    transition: opacity 0.8s ease-in-out;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
 }
 
-body.fade-in {
-    opacity: 1;
+.intro {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
-.top-row {
-    z-index: 0;
+.library-logo {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,17 +42,7 @@ body.fade-in {
     gap: 20px;
 }
 
-.entry-flexbox {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    height: 100vh;
-    margin-right: -20px;
-}
-
-.entry-logo {
+.library-name {
     line-height: .8;
     pointer-events: none;
     font-family: "Stick No Bills", sans-serif;
@@ -54,35 +51,47 @@ body.fade-in {
     text-decoration: underline;
 }
 
-.entry-description {   
+.library-description {   
     color: var(--font-color-and-bg2);
     font-family: "Chakra Petch", sans-serif;
     font-size: clamp(20px, 3vmin, 70px);
 }
 
-
-.open-library-button {
+.intro-button {
     width: clamp(60px, 12vmin, 150px);
     height: clamp(60px, 12vmin, 150px);
- 
-    border: none;
     background: transparent;
-
-    z-index: 2;
+    border: none;
     cursor: pointer;
-
-    transition: transform 0.1s ease-out, border-radius 0.1s ease-out;
+    transition: transform 0.01s linear;
 }
 
-.open-library-button:active {
-    transform: scale(.85);
-    border-radius: 1vmin;
+.intro-button:active {
+    transform: scale(.8);
 }
 
-.open-library-button svg {
+.intro-button svg {
     fill: var(--font-color-and-bg2);
     width: 90%;
     height: 90%;
 }
 
+.library-content {
+    color: var(--font-color-and-bg2);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 
+.active-screen {
+    opacity: 1;
+    z-index: 10;
+    pointer-events: all;
+}
+
+@media screen and (orientation: portrait) {
+    .intro {
+        flex-direction: column;
+    }
+}
