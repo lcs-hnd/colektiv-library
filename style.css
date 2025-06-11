@@ -17,6 +17,8 @@ body {
     background-color: #000000;
 }
 
+
+/* Default class applied to HTML elements to be displayed */
 .screen {
     pointer-events: none;
     opacity: 0;
@@ -25,6 +27,22 @@ body {
     width: 100vw;
     z-index: 1;
 }
+
+/* Class applied onto elements displayed on-screen */
+.active-screen {
+    opacity: 1;
+    z-index: 10;
+    pointer-events: all;
+}
+
+/* ---------------------
+SECTION: ENTRY PAGE
+.intro: the container for the first page
+.library-logo: container for page name and description
+.library-name: large page name
+.library-description: text sitting under library-name
+.intro-button: interactive container for the svg 
+--------------------- */
 
 .intro {
     display: flex;
@@ -76,6 +94,13 @@ body {
     height: 90%;
 }
 
+/* ---------------------
+SECTION: Second page
+.library-content: Main container
+~ the rest is currently just visual pseudo elements
+--------------------- */
+
+/* Second container after intro is removed from DOM */
 .library-content {
     color: var(--font-color-and-bg2);
     display: flex;
@@ -84,11 +109,90 @@ body {
     align-items: center;
 }
 
-.active-screen {
-    opacity: 1;
-    z-index: 10;
-    pointer-events: all;
+/* Relevant CSS for pseudo elements */
+.library-content {
+    position: relative;
+    overflow: hidden;
+    --corner-color:var(--font-color-and-bg2);
+    --line-thickness: .7vmin;
+    --line-length: 7.5vmin;
+    --offset-value: 20px;
 }
+
+/* ---
+PSEUDO CORNERS 
+--- */
+
+.library-content::before,
+.library-content::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size:
+        var(--line-thickness) var(--line-length), 
+        var(--line-length) var(--line-thickness), 
+        var(--line-thickness) var(--line-length), 
+        var(--line-length) var(--line-thickness); 
+}
+
+.library-content::before {
+    background-image:
+    /* Top Left - Vertical */
+        linear-gradient(to bottom, var(--corner-color) var(--line-length), transparent var(--line-length)),
+    /* Top Left - Horizontal */
+        linear-gradient(to right, var(--corner-color) var(--line-length), transparent var(--line-length)),
+    /* Bottom Left - Vertical */
+        linear-gradient(to top, var(--corner-color) var(--line-length), transparent var(--line-length)),
+    /* Bottom Left - Horizontal */
+        linear-gradient(to right, var(--corner-color) var(--line-length), transparent var(--line-length));
+    
+    
+
+    background-position:
+    /* Top Left - Vertical */
+        top var(--offset-value) left var(--offset-value),
+    /* Top Left - Horizontal */
+        top var(--offset-value) left var(--offset-value),
+    /* Bottom Left - Vertical */
+        bottom var(--offset-value) left var(--offset-value),
+    /* Bottom Left - Horizontal */
+        bottom var(--offset-value) left var(--offset-value);
+}
+
+.library-content::after {
+    background-image:
+    /* Top Right - Vertical */
+        linear-gradient(to bottom, var(--corner-color) var(--line-length), transparent var(--line-length)),
+    /* Top Right - Horizontal */
+        linear-gradient(to left, var(--corner-color) var(--line-length), transparent var(--line-length)),
+    /* Bottom Right - Vertical */
+        linear-gradient(to top, var(--corner-color) var(--line-length), transparent var(--line-length)),
+    /* Bottom Right - Horizontal */
+        linear-gradient(to left, var(--corner-color) var(--line-length), transparent var(--line-length));
+
+    background-position:
+    /* Top Right - Vertical */
+        top var(--offset-value)  right var(--offset-value), 
+    /* Top Right - Horizontal */
+        top var(--offset-value) right var(--offset-value), 
+    /* Bottom Right - Vertical */
+        bottom var(--offset-value) right var(--offset-value), 
+    /* Bottom Right - Horizontal */
+        bottom var(--offset-value) right var(--offset-value);
+}
+
+/* WIP: testing text alignment in library
+    .text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    width: 100%;
+    height: auto;
+    font-family: "Chakra Petch", sans-serif;
+} */
 
 @media screen and (orientation: portrait) {
     .intro {
