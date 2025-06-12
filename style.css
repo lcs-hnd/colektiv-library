@@ -267,7 +267,7 @@ SECTION: Second page
     color: #F3A712;
     font-family: "Chakra Petch", sans-serif;
     display: flex;
-    border: inset #483f2e;
+    border: solid #483f2e;
     flex-direction: column;
     align-items: center;
     justify-content: center;
