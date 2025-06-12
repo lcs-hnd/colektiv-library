@@ -10,29 +10,26 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 
 body {
     background-color: #000000;
 }
 
+.intro,
+.library-content {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
 
 /* Default class applied to HTML elements to be displayed */
 .screen {
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.8s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
     height: 100vh;
     width: 100vw;
     z-index: 1;
-}
-
-/* Class applied onto elements displayed on-screen */
-.active-screen {
-    opacity: 1;
-    z-index: 10;
-    pointer-events: all;
 }
 
 /* ---------------------
@@ -97,7 +94,7 @@ SECTION: ENTRY PAGE
 /* ---------------------
 SECTION: Second page
 .library-content: Main container
-~ the rest is currently just visual pseudo elements
+
 --------------------- */
 
 /* Second container after intro is removed from DOM */
@@ -112,11 +109,280 @@ SECTION: Second page
 /* Relevant CSS for pseudo elements */
 .library-content {
     position: relative;
-    overflow: hidden;
     --corner-color:var(--font-color-and-bg2);
     --line-thickness: .7vmin;
     --line-length: 7.5vmin;
     --offset-value: 20px;
+}
+
+.library-new-book-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0;
+}
+
+.library-btn-text-wrapper {
+    width: 50vmin;
+    color: var(--font-color-and-bg2);
+    font-family: "Chakra Petch", sans-serif;
+    font-size: clamp(20px, 3vmin, 70px);
+}
+
+.library-btn-svg-wrapper {
+    display: flex;
+    width: clamp(60px, 12vmin, 150px);;
+    height: clamp(60px, 12vmin, 150px);;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.plus-svg {
+    fill: var(--font-color-and-bg2);
+    width: 50%;
+    height: 50%;
+}
+
+.quill-svg {
+    fill: var(--font-color-and-bg2);
+    width: 100%;
+    height: 100%;
+}
+
+.library-browser {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 80%;
+}
+
+.library-new-options {
+    opacity: 0;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease-in-out;
+
+}
+
+.library-new-options-question {
+    color: var(--font-color-and-bg2);
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 5vmin;
+    height: auto;
+    width: auto;
+}
+
+.library-new-options-question-response {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 2vmin;
+    width: auto;
+    height: 25px;
+    text-align: center;
+    color: #FF8800;
+    padding-bottom: 2vmin;
+}
+
+.library-new-options-btns-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    gap: 5vmin;
+}
+
+.library-new-options-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 20vmin;
+    height: 10vmin;
+    border: none;
+    background: transparent;
+    color: var(--font-color-and-bg2);
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 3vmin;
+    border-radius: 0px;
+}
+
+.library-new-options-btns:hover {
+    background-color: #2f2000;
+    color:#F3A712;
+    border: solid  #F3A712;
+    text-decoration: underline;
+}
+
+.library-new-options-btns:active {
+    background-color:#F3A712;
+    color: #000000;
+}
+
+.template-page, .new-page {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.book-collection-grid {
+    pointer-events: all;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill , minmax(min(300px, 100%), 1fr));
+    grid-template-rows: 1fr;
+    width: 100%;
+    height: 100%;
+    gap: 1em;
+    overflow-y: auto; 
+}
+
+.book-card {
+    box-sizing: border-box;
+    text-align: center;
+    background: #181818c2;
+    color: #F3A712;
+    font-family: "Chakra Petch", sans-serif;
+    display: flex;
+    border: inset #483f2e;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+
+}
+
+.book-container {
+    padding: 20px;
+}
+.book-container-title {
+    padding-bottom: 12px;
+    font-size: 1.8em;
+}
+
+.book-container-text {
+    padding: 5px;
+    font-size: 1.2em;
+    color: #FF8800;
+}
+
+.add-book-btn {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent; 
+    border: none;
+    color: #F3A712;
+}
+
+.add-book-btn svg {
+    height: 70%;
+    width: 70%;
+    fill: #F3A712;
+}
+
+.book-form {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    font-family: "Chakra Petch", sans-serif;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.book-form input {
+    color: #F3A712;
+    background-color: transparent;
+    border-bottom: solid #F3A712;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.book-form button {
+    border: solid #F3A712;
+    color: #F3A712;
+    background-color: transparent;
+    width: 50%;
+}
+
+.book-form label {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    background-color: #000000;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--font-color-and-bg2);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input {
+    text-align: center;
+}
+input:focus {
+   outline: none;
+}
+input::placeholder {
+    text-align: center;
 }
 
 /* ---
@@ -130,12 +396,14 @@ PSEUDO CORNERS
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
+    
     background-size:
         var(--line-thickness) var(--line-length), 
         var(--line-length) var(--line-thickness), 
         var(--line-thickness) var(--line-length), 
         var(--line-length) var(--line-thickness); 
 }
+
 
 .library-content::before {
     background-image:
@@ -148,8 +416,6 @@ PSEUDO CORNERS
     /* Bottom Left - Horizontal */
         linear-gradient(to right, var(--corner-color) var(--line-length), transparent var(--line-length));
     
-    
-
     background-position:
     /* Top Left - Vertical */
         top var(--offset-value) left var(--offset-value),
@@ -183,19 +449,36 @@ PSEUDO CORNERS
         bottom var(--offset-value) right var(--offset-value);
 }
 
-/* WIP: testing text alignment in library
-    .text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-    width: 100%;
-    height: auto;
-    font-family: "Chakra Petch", sans-serif;
-} */
+/* Class applied onto elements displayed on-screen */
+.active-screen {
+    opacity: 1;
+    z-index: 10;
+}
+
+.active-ui-element {
+    opacity: 1;
+    z-index: 12 !important;
+    pointer-events: all !important;
+}
+
+.intro-button {
+    pointer-events: all !important;
+}
 
 @media screen and (orientation: portrait) {
     .intro {
         flex-direction: column;
     }
+    
+    .book-collection-grid {
+        grid-template-columns: repeat(1 , minmax(300px, 70vw));
+        grid-template-rows: repeat(auto-fill, minmax(200px, min-content));
+    }
+
+    .add-book-btn svg {
+    height: 70%;
+    width: 70%;
+    fill: #F3A712;
 }
+}
+
