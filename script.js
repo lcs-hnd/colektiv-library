@@ -12,6 +12,10 @@ const templateLibrary = [
     new Book("Pride and Prejudice", "Jane Austen", 279, true)
 ];
 
+Book.prototype.toggleReadStatus = function() {
+    this.isRead = !this.isRead;
+};
+
 // Constructor
 function Book(title, author, pages, isRead) {
     this.id = crypto.randomUUID();
@@ -35,14 +39,28 @@ function displayLibrary(library, container, onAddBook) {
     library.forEach(book => {
         const card = document.createElement('div');
         card.className = 'book-card';
+        card.dataset.bookId = book.id; 
         card.innerHTML = `
             <div class='book-container'>
                 <div class='book-container-title'>${book.title}</div>
                 <div class='book-container-text'>Author: ${book.author}</div>
                 <div class='book-container-text'>Pages: ${book.pages}</div>
-                <div class='book-container-text'>${book.isRead ? 'Read' : 'Not Read'}</div>
+                <button class="toggle-read-btn">${book.isRead ? 'Read' : 'Not Read'}</button>
             </div>
         `;
+        const toggleBtn = card.querySelector('.toggle-read-btn');
+
+        toggleBtn.addEventListener('click', () => {
+            // Call the prototype function to change the book's status
+            book.toggleReadStatus();
+
+            // Update the button's text and styling
+            toggleBtn.textContent = book.isRead ? 'Read' : 'Not Read';
+            toggleBtn.classList.toggle('read');
+            toggleBtn.classList.toggle('not-read');
+            toggleBtn.textContent = book.isRead ? 'Read' : 'Not Read';
+        });
+
         grid.appendChild(card);
     });
 

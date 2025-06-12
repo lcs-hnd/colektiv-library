@@ -252,6 +252,12 @@ SECTION: Second page
     height: 100%;
     gap: 1em;
     overflow-y: auto; 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.book-collection-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .book-card {
@@ -275,7 +281,7 @@ SECTION: Second page
     padding: 20px;
 }
 .book-container-title {
-    padding-bottom: 12px;
+    padding-bottom: 6px;
     font-size: 1.8em;
 }
 
@@ -283,6 +289,19 @@ SECTION: Second page
     padding: 5px;
     font-size: 1.2em;
     color: #FF8800;
+}
+
+.toggle-read-btn {
+    margin-top: 5px;
+    border-radius: 3px;
+    border: none;
+    color: #000000;
+    background-color: #F3A712;
+}
+
+.toggle-read-btn:active {
+    color: #F3A712;
+    background-color: transparent;
 }
 
 .add-book-btn {
